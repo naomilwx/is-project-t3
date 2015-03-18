@@ -1,6 +1,6 @@
 package ch.ethz.globis.isk.config;
 
-//import ch.ethz.globis.isk.domain.mongo.*;
+import ch.ethz.globis.isk.domain.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
