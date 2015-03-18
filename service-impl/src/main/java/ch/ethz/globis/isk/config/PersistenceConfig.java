@@ -1,9 +1,17 @@
 package ch.ethz.globis.isk.config;
 
-import ch.ethz.globis.isk.domain.mongo.*;
+//import ch.ethz.globis.isk.domain.mongo.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.mongodb.core.MongoFactoryBean;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 /**
  * The main configuration class for Spring.
@@ -89,5 +97,18 @@ public class PersistenceConfig {
     @Profile({ "production", "import", "web" })
     String productionDatabaseName() {
         return "dblp";
+    }
+    
+    @Bean(name = "db")
+    MongoOperations startMongodb(String databaseName) throws Exception{
+    	MongoOperations mongo = new MongoTemplate(mongo().getObject(), databaseName);
+    	return mongo;
+    }
+    
+    @Bean
+    MongoFactoryBean mongo(){
+    	MongoFactoryBean mongo = new MongoFactoryBean();
+    	mongo.setHost("localhost");
+    	return mongo;
     }
 }
