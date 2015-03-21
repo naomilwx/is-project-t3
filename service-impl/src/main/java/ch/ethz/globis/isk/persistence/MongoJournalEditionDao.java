@@ -25,6 +25,7 @@ public class MongoJournalEditionDao extends MongoDao<String, JournalEdition> imp
 
     @Override
     public List<JournalEdition> findByJournalIdOrdered(String journalId) {
+    	//TODO: fix this
     	Map<String,Filter> filterMap = new HashMap<String,Filter>();
     	filterMap.put("journal", new Filter(Operator.EQUAL,journalId));
     	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 

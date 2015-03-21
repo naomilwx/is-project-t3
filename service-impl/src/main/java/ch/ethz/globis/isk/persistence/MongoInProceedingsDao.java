@@ -26,6 +26,7 @@ public class MongoInProceedingsDao extends MongoDao<String, InProceedings> imple
 
     @Override
     public List<InProceedings> findByProceedingsIdOrderByYear(String proceedingsId) {
+    	//TODO: fix this
     	Map<String,Filter> filterMap = new HashMap<String,Filter>();
     	filterMap.put("proceedings", new Filter(Operator.EQUAL,proceedingsId));
     	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 

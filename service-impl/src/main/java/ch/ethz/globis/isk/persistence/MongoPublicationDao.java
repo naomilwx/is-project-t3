@@ -31,6 +31,7 @@ public class MongoPublicationDao extends MongoDao<String, Publication> implement
 
     @Override
     public List<Publication> findByAuthorIdOrderedByYear(String authorId) {
+    	//TODO: fix this
     	Map<String,Filter> filterMap = new HashMap<String,Filter>();
     	filterMap.put("author", new Filter(Operator.EQUAL,authorId));
     	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 
@@ -44,6 +45,7 @@ public class MongoPublicationDao extends MongoDao<String, Publication> implement
 
     @Override
     public List<Publication> findByEditorIdOrderedByYear(String editorId) {
+    	//TODO: fix this
     	Map<String,Filter> filterMap = new HashMap<String,Filter>();
     	filterMap.put("editor", new Filter(Operator.EQUAL,editorId));
     	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 
@@ -57,6 +59,7 @@ public class MongoPublicationDao extends MongoDao<String, Publication> implement
 
     @Override
     public List<Publication> findByPublisherOrderedByYear(String publisherId) {
+    	//TODO: fix this
     	Map<String,Filter> filterMap = new HashMap<String,Filter>();
     	filterMap.put("publisher", new Filter(Operator.EQUAL,publisherId));
     	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 
@@ -70,6 +73,7 @@ public class MongoPublicationDao extends MongoDao<String, Publication> implement
 
     @Override
     public List<Publication> findBySchoolOrderedByYear(String schoolId) {
+    	//TODO: fix this
     	Map<String,Filter> filterMap = new HashMap<String,Filter>();
     	filterMap.put("school", new Filter(Operator.EQUAL,schoolId));
     	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 
@@ -83,6 +87,7 @@ public class MongoPublicationDao extends MongoDao<String, Publication> implement
 
     @Override
     public List<Publication> findBySeriesOrderedByYear(String seriesId) {
+    	//TODO: fix this
     	Map<String,Filter> filterMap = new HashMap<String,Filter>();
     	filterMap.put("series", new Filter(Operator.EQUAL,seriesId));
     	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 

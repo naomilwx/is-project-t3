@@ -34,6 +34,7 @@ public class MongoArticleDao extends MongoDao<String, Article> implements Articl
 
     @Override
     public List<Article> findByJournalEditionOrderedByYear(String journalEditionId) {
+    	//TODO: this will not work because journalEdition is an object, not id
     	Map<String,Filter> filterMap = new HashMap<String,Filter>();
     	filterMap.put("journalEdition", new Filter(Operator.EQUAL, journalEditionId));
     	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 

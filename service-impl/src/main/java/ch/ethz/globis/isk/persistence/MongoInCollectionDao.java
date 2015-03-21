@@ -26,6 +26,7 @@ public class MongoInCollectionDao extends MongoDao<String, InCollection> impleme
 
     @Override
     public List<InCollection> findByBookIdOrderByYear(String bookId) {
+    	//TODO: this will not work, because book is stored as an object, not id.
     	Map<String,Filter> filterMap = new HashMap<String,Filter>();
     	filterMap.put("book", new Filter(Operator.EQUAL,bookId));
     	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 

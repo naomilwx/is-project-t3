@@ -25,6 +25,7 @@ public class MongoConferenceEditionDao extends MongoDao<String, ConferenceEditio
 
     @Override
     public List<ConferenceEdition> findByConferenceOrderedByYear(String conferenceId) {
+    	//TODO: fix this
     	Map<String,Filter> filterMap = new HashMap<String,Filter>();
     	filterMap.put("conference", new Filter(Operator.EQUAL,conferenceId));
     	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 
