@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -46,30 +46,60 @@ public abstract class MongoDao<K extends Serializable, T extends DomainObject> i
 	@Override
 	public T findOne(K id) {
 		// I am unsure about this implementation
-		Query query = new Query();
-		query.addCriteria(Criteria.where("_id").is(id));
-		return db.findOne(query, getStoredClass());
+//		Query query = new Query();
+//		query.addCriteria(Criteria.where("_id").is(id));
+//		return db.findOne(query, getStoredClass());
+		return db.findById(id, getStoredClass());
 	}
 
 	@Override
 	public T findOneByFilter(Map<String, Filter> filterMap) {
-		Query query = new Query();
-		for(Map.Entry<String, Filter> filter : filterMap.entrySet()) {
-			String filterKey = filter.getKey();
-			Filter filterVal = filter.getValue();
-			query.addCriteria(Criteria.where(filterKey).is(filterVal));
-		}
+		Query query = constructQueryForFilter(filterMap);
 		return db.findOne(query, getStoredClass());
 	}
-
+	
+	private Query constructQueryForFilter(Map<String, Filter> filterMap){
+		Query query = new Query();
+		for(Map.Entry<String, Filter> filterItem : filterMap.entrySet()) {
+			String filterKey = filterItem.getKey();
+			Filter filter = filterItem.getValue();
+			Object filterVal =  filter.getValue();
+			if(Operator.EQUAL.equals(filter.getOperator())){
+				query.addCriteria(Criteria.where(filterKey).is(filterVal));
+			}else{
+				query.addCriteria(Criteria.where(filterKey).regex((String) filterVal));
+			}
+			
+		}
+		return query;
+	}
+	
+	private Query sortQuery(Query query, List<OrderFilter> orderList){
+		Sort sort = null;
+		for(OrderFilter orderFilter: orderList){
+			if(sort != null){
+				sort.and(createSort(orderFilter));
+			}else{
+				sort = createSort(orderFilter);
+			}
+		}
+		return query;
+	}
+	
+	private Sort createSort(OrderFilter orderFilter){
+		if(Order.ASC.equals(orderFilter.getOrder())){
+			return new Sort(Sort.Direction.ASC, orderFilter.getField());
+		}else{
+			return new Sort(Sort.Direction.DESC, orderFilter.getField());
+		}
+	}
+	
+	private Query limitQuery(Query query, int start, int size){
+		return query.skip(start).limit(size);
+	}
 	@Override
 	public Iterable<T> findAllByFilter(Map<String, Filter> filterMap) {
-		Query query = new Query();
-		for(Map.Entry<String, Filter> filter : filterMap.entrySet()) {
-			String filterKey = filter.getKey();
-			Filter filterVal = filter.getValue();
-			query.addCriteria(Criteria.where(filterKey).is(filterVal));
-		}
+		Query query = constructQueryForFilter(filterMap);
 		return db.find(query, getStoredClass());
 	}
 
@@ -87,34 +117,26 @@ public abstract class MongoDao<K extends Serializable, T extends DomainObject> i
 	@Override
 	public Iterable<T> findAllByFilter(Map<String, Filter> filterMap,
 			int start, int size) {
-		Query query = new Query();
-		int counter = 0;
-		for(Map.Entry<String, Filter> filter : filterMap.entrySet()) {
-			if(counter++ < start) {
-				continue;
-			}
-			if(counter > size) {
-				break;
-			}
-			String filterKey = filter.getKey();
-			Filter filterVal = filter.getValue();
-			query.addCriteria(Criteria.where(filterKey).is(filterVal));
-		}
+		Query query = constructQueryForFilter(filterMap).skip(start).limit(size);
+		query = limitQuery(query, start, size);
 		return db.find(query, getStoredClass());
 	}
 
 	@Override
 	public Iterable<T> findAllByFilter(Map<String, Filter> filterMap,
 			List<OrderFilter> orderList) {
-		//TODO:
-		return null;
+		Query query = constructQueryForFilter(filterMap);
+		query = sortQuery(query, orderList);
+		return db.find(query, getStoredClass());
 	}
 
 	@Override
 	public Iterable<T> findAllByFilter(Map<String, Filter> filterMap,
 			List<OrderFilter> orderList, int start, int size) {
-		//TODO:
-		return null;
+		Query query = constructQueryForFilter(filterMap);
+		query = sortQuery(query, orderList);
+		query = limitQuery(query, start, size);
+		return db.find(query, getStoredClass());
 	}
 
 	@Override
