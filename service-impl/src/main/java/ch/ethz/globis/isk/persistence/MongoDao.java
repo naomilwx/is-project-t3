@@ -83,6 +83,9 @@ public abstract class MongoDao<K extends Serializable, T extends DomainObject> i
 				sort = createSort(orderFilter);
 			}
 		}
+		if(sort != null){
+			query.with(sort);
+		}
 		return query;
 	}
 	
@@ -154,6 +157,14 @@ public abstract class MongoDao<K extends Serializable, T extends DomainObject> i
 			counter++;
 		}
 		return counter;
+	}
+	
+	protected Query findBySubdocumentIdOrderedByYear(String subdocName, String subdocId){
+		Query query = new Query();
+		query.addCriteria(Criteria.where(subdocName).is(subdocId));
+		OrderFilter filter = new OrderFilter("year", Order.ASC);
+		query.with(createSort(filter));
+		return query;
 	}
 	
 }

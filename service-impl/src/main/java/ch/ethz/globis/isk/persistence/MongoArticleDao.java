@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import ch.ethz.globis.isk.domain.Article;
@@ -34,15 +35,7 @@ public class MongoArticleDao extends MongoDao<String, Article> implements Articl
 
     @Override
     public List<Article> findByJournalEditionOrderedByYear(String journalEditionId) {
-    	//TODO: this will not work because journalEdition is an object, not id
-    	Map<String,Filter> filterMap = new HashMap<String,Filter>();
-    	filterMap.put("journalEdition", new Filter(Operator.EQUAL, journalEditionId));
-    	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 
-    	orderFilter.add(new OrderFilter("year", Order.ASC));
-    	List<Article> list = new ArrayList<Article>();
-    	for (Article article : findAllByFilter(filterMap,orderFilter)){
-    		list.add(article);
-    	}
-        return list;
+    	Query query = findBySubdocumentIdOrderedByYear("journalEdition", journalEditionId);    	
+        return db.find(query, getStoredClass());
     }
 }
