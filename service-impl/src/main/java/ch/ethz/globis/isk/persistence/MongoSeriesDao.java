@@ -26,7 +26,7 @@ public class MongoSeriesDao extends MongoDao<String, Series> implements SeriesDa
     }
 
 	@Override
-	public Class<Series> getStoredClass() {
-		return Series.class;
+	public Class getStoredClass() {
+		return MongoSeries.class;
 	}
 }

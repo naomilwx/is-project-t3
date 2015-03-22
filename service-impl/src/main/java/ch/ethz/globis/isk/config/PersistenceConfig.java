@@ -48,7 +48,7 @@ public class PersistenceConfig {
      */
     @Autowired
     Environment environment;
-
+    
     /**
      * A Boolean bean whose value determines if the database needs to be cleared on
      * startup.
@@ -99,9 +99,13 @@ public class PersistenceConfig {
         return "dblp";
     }
     
-    @Bean(name = "db")
-    MongoOperations startMongodb(String databaseName) throws Exception{
+    @Bean
+    MongoOperations mongoOperations(String databaseName, Boolean dropDatabase) throws Exception{
+//    	if(dropDatabase){
+//    		
+//    	}
     	MongoOperations mongo = new MongoTemplate(mongo().getObject(), databaseName);
+    	
     	return mongo;
     }
     

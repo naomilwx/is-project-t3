@@ -26,7 +26,7 @@ public class MongoPublisherDao extends MongoDao<String, Publisher> implements Pu
     }
 
 	@Override
-	public Class<Publisher> getStoredClass() {
-		return Publisher.class;
+	public Class getStoredClass() {
+		return MongoPublisher.class;
 	}
 }

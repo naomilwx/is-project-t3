@@ -20,11 +20,11 @@ public class MongoJournalEditionDao extends MongoDao<String, JournalEdition> imp
     @Override
     public List<JournalEdition> findByJournalIdOrdered(String journalId) {
     	Query query = findBySubdocumentIdOrderedByYear("journal", journalId);    	
-        return db.find(query, getStoredClass());
+        return mongoOperations.find(query, getStoredClass());
     }
 
 	@Override
-	public Class<JournalEdition> getStoredClass() {
-		return JournalEdition.class;
+	public Class getStoredClass() {
+		return MongoJournalEdition.class;
 	}
 }

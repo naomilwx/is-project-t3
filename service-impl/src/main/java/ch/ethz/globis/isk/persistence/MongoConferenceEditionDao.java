@@ -20,11 +20,11 @@ public class MongoConferenceEditionDao extends MongoDao<String, ConferenceEditio
     @Override
     public List<ConferenceEdition> findByConferenceOrderedByYear(String conferenceId) {
     	Query query = findBySubdocumentIdOrderedByYear("conference", conferenceId);
-        return db.find(query, getStoredClass());
+        return mongoOperations.find(query, getStoredClass());
     }
 
 	@Override
-	public Class<ConferenceEdition> getStoredClass() {
-		return ConferenceEdition.class;
+	public Class getStoredClass() {
+		return MongoConferenceEdition.class;
 	}
 }

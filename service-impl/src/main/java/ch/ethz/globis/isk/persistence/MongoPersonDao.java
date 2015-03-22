@@ -26,7 +26,7 @@ public class MongoPersonDao extends MongoDao<String, Person> implements PersonDa
     }
 
 	@Override
-	public Class<Person> getStoredClass() {
-		return Person.class;
+	public Class getStoredClass() {
+		return MongoPerson.class;
 	}
 }

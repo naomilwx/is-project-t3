@@ -30,35 +30,35 @@ public class MongoPublicationDao extends MongoDao<String, Publication> implement
     @Override
     public List<Publication> findByAuthorIdOrderedByYear(String authorId) {
         Query query = findBySubdocumentIdOrderedByYear("author", authorId);    	
-        return db.find(query, getStoredClass());
+        return mongoOperations.find(query, getStoredClass());
     }
 
     @Override
     public List<Publication> findByEditorIdOrderedByYear(String editorId) {
     	Query query = findBySubdocumentIdOrderedByYear("editor", editorId);    	
-        return db.find(query, getStoredClass());
+        return mongoOperations.find(query, getStoredClass());
     }
 
     @Override
     public List<Publication> findByPublisherOrderedByYear(String publisherId) {
     	Query query = findBySubdocumentIdOrderedByYear("publisher", publisherId);    	
-        return db.find(query, getStoredClass());
+        return mongoOperations.find(query, getStoredClass());
     }
 
     @Override
     public List<Publication> findBySchoolOrderedByYear(String schoolId) {
     	Query query = findBySubdocumentIdOrderedByYear("school", schoolId);    	
-        return db.find(query, getStoredClass());
+        return mongoOperations.find(query, getStoredClass());
     }
 
     @Override
     public List<Publication> findBySeriesOrderedByYear(String seriesId) {
     	Query query = findBySubdocumentIdOrderedByYear("series", seriesId);    	
-        return db.find(query, getStoredClass());
+        return mongoOperations.find(query, getStoredClass());
     }
 
 	@Override
-	public Class<Publication> getStoredClass() {
-		return Publication.class;
+	public Class getStoredClass() {
+		return MongoPublication.class;
 	}
 }

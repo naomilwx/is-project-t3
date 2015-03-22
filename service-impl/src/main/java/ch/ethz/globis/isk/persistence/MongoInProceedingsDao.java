@@ -25,7 +25,7 @@ public class MongoInProceedingsDao extends MongoDao<String, InProceedings> imple
     @Override
     public List<InProceedings> findByProceedingsIdOrderByYear(String proceedingsId) {
     	Query query = findBySubdocumentIdOrderedByYear("proceedings", proceedingsId);    	
-        return db.find(query, getStoredClass());
+        return mongoOperations.find(query, getStoredClass());
     }
 
     @Override
@@ -34,8 +34,8 @@ public class MongoInProceedingsDao extends MongoDao<String, InProceedings> imple
     }
 
 	@Override
-	public Class<InProceedings> getStoredClass() {
-		return InProceedings.class;
+	public Class getStoredClass() {
+		return MongoInProceedings.class;
 	}
 
 }

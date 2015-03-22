@@ -25,7 +25,7 @@ public class MongoPhdThesisDao extends MongoDao<String, PhdThesis> implements Ph
     }
 
 	@Override
-	public Class<PhdThesis> getStoredClass() {
-		return PhdThesis.class;
+	public Class getStoredClass() {
+		return MongoPhdThesis.class;
 	}
 }

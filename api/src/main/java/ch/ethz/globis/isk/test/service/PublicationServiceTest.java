@@ -166,7 +166,7 @@ public class PublicationServiceTest {
         tm.commitTransaction();
     }
 
-    @Test
+//    @Test
     public void test_2_insertPublisher() {
         //test data
         String TEST_ID = "2";
@@ -234,7 +234,7 @@ public class PublicationServiceTest {
         tm.commitTransaction();
     }
 
-    @Test
+//    @Test
     public void test_3_insertSchool() {
         //Test data
         String TEST_ID = "3";
@@ -300,7 +300,7 @@ public class PublicationServiceTest {
         tm.commitTransaction();
     }
 
-    @Test
+//    @Test
     public void test_4_insertSeries() {
         //Test data
         String TEST_ID = "4";
@@ -372,7 +372,7 @@ public class PublicationServiceTest {
         tm.commitTransaction();
     }
 
-    @Test
+//    @Test
     public void test_5_insertJournalInfo() {
         //Test data
         String TEST_ID = "5";
@@ -443,7 +443,7 @@ public class PublicationServiceTest {
         tm.commitTransaction();
     }
 
-    @Test
+//    @Test
     public void test_6_retrievePublicationsByAuthor() {
         //test data
         String TEST_ID = "6";
@@ -484,7 +484,7 @@ public class PublicationServiceTest {
         tm.commitTransaction();
     }
 
-    @Test
+//    @Test
     public void test_7_retrievePublicationsByEditor() {
         //test data
         String TEST_ID = "7";
@@ -525,7 +525,7 @@ public class PublicationServiceTest {
         tm.commitTransaction();
     }
 
-    @Test
+//    @Test
     public void test_8_retrievePublicationsBySeries() {
         String TEST_ID = "8";
         String PROCEEDINGS_ID = "test-proce-" + TEST_ID;
@@ -576,7 +576,7 @@ public class PublicationServiceTest {
         tm.commitTransaction();
     }
 
-    @Test
+//    @Test
     public void test_9_retrievePublicationsBySchool() {
         String TEST_ID = "9";
         String PHD_THESIS_ID = "test-phdthesis-" + TEST_ID;
@@ -627,7 +627,7 @@ public class PublicationServiceTest {
         tm.commitTransaction();
     }
 
-    @Test
+//    @Test
     public void test_10_retrievePublicationsByPublisher() {
         //test data
         String TEST_ID = "10";
@@ -679,7 +679,7 @@ public class PublicationServiceTest {
         tm.commitTransaction();
     }
 
-    @Test
+//    @Test
     public void test_11_retrieveArticlesByJournalEdition() {
         String TEST_ID = "11";
         String ARTICLE_ID_1 = "test-article-1" + TEST_ID;
@@ -715,7 +715,7 @@ public class PublicationServiceTest {
         tm.commitTransaction();
     }
 
-    @Test
+//    @Test
     public void test_12_retrieveInCollectionsByBook() {
         String TEST_ID = "12";
         String BOOK_ID = "test-book-" + TEST_ID;
@@ -772,7 +772,7 @@ public class PublicationServiceTest {
         tm.commitTransaction();
     }
 
-    @Test
+//    @Test
     public void test_13_retrieveInProceedingsByProceedings() {
         String TEST_ID = "13";
         String PROCEEDINGS_ID = "test-proc-" + TEST_ID;
@@ -844,7 +844,7 @@ public class PublicationServiceTest {
         tm.commitTransaction();
     }
 
-    @Test
+//    @Test
     public void test_14_retrieveJournalEditionsByJournal() {
         String TEST_ID = "14";
         String JE_ID_1 = "test-je-1-" + TEST_ID;
@@ -879,7 +879,7 @@ public class PublicationServiceTest {
         tm.commitTransaction();
     }
 
-    @Test
+//    @Test
     public void test_15_retrieveConferenceEditionsByConference() {
         String TEST_ID = "15";
         String CONF_ID = "test-conf-" + TEST_ID;

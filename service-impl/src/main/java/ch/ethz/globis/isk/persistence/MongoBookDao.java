@@ -26,7 +26,7 @@ public class MongoBookDao extends MongoDao<String, Book> implements BookDao {
     }
 
 	@Override
-	public Class<Book> getStoredClass() {
-		return Book.class;
+	public Class getStoredClass() {
+		return MongoBook.class;
 	}
 }

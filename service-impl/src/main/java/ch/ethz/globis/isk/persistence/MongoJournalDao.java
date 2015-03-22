@@ -26,7 +26,7 @@ public class MongoJournalDao extends MongoDao<String, Journal> implements Journa
     }
 
 	@Override
-	public Class<Journal> getStoredClass() {
-		return Journal.class;
+	public Class getStoredClass() {
+		return MongoJournal.class;
 	}
 }

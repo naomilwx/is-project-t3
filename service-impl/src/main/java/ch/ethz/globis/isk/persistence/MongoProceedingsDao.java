@@ -26,7 +26,7 @@ public class MongoProceedingsDao extends MongoDao<String, Proceedings> implement
     }
 
 	@Override
-	public Class<Proceedings> getStoredClass() {
-		return Proceedings.class;
+	public Class getStoredClass() {
+		return MongoProceedings.class;
 	}
 }

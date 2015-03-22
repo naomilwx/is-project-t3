@@ -21,15 +21,13 @@ import ch.ethz.globis.isk.util.OrderFilter;
 
 @Repository
 public abstract class MongoDao<K extends Serializable, T extends DomainObject> implements Dao<K, T>{
-	@Autowired
-	@Qualifier("db")
-	protected MongoOperations db;
+	@Autowired protected MongoOperations mongoOperations;
 	
 	public abstract Class<T> getStoredClass();
 
 	@Override
 	public <S extends T> S insert(S entity) {
-		db.insert(entity);
+		mongoOperations.insert(entity);
 		return entity;
 	}
 
@@ -38,7 +36,7 @@ public abstract class MongoDao<K extends Serializable, T extends DomainObject> i
 		Iterator<S> i = entities.iterator();
 		while (i.hasNext()){
 			S entity = i.next();
-			db.insert(entity);
+			mongoOperations.insert(entity);
 		}
 		return entities;
 	}
@@ -48,14 +46,14 @@ public abstract class MongoDao<K extends Serializable, T extends DomainObject> i
 		// I am unsure about this implementation
 //		Query query = new Query();
 //		query.addCriteria(Criteria.where("_id").is(id));
-//		return db.findOne(query, getStoredClass());
-		return db.findById(id, getStoredClass());
+//		return mongoOperations.findOne(query, getStoredClass());
+		return mongoOperations.findById(id, getStoredClass());
 	}
 
 	@Override
 	public T findOneByFilter(Map<String, Filter> filterMap) {
 		Query query = constructQueryForFilter(filterMap);
-		return db.findOne(query, getStoredClass());
+		return mongoOperations.findOne(query, getStoredClass());
 	}
 	
 	private Query constructQueryForFilter(Map<String, Filter> filterMap){
@@ -103,7 +101,7 @@ public abstract class MongoDao<K extends Serializable, T extends DomainObject> i
 	@Override
 	public Iterable<T> findAllByFilter(Map<String, Filter> filterMap) {
 		Query query = constructQueryForFilter(filterMap);
-		return db.find(query, getStoredClass());
+		return mongoOperations.find(query, getStoredClass());
 	}
 
 	@Override
@@ -122,7 +120,7 @@ public abstract class MongoDao<K extends Serializable, T extends DomainObject> i
 			int start, int size) {
 		Query query = constructQueryForFilter(filterMap).skip(start).limit(size);
 		query = limitQuery(query, start, size);
-		return db.find(query, getStoredClass());
+		return mongoOperations.find(query, getStoredClass());
 	}
 
 	@Override
@@ -130,7 +128,7 @@ public abstract class MongoDao<K extends Serializable, T extends DomainObject> i
 			List<OrderFilter> orderList) {
 		Query query = constructQueryForFilter(filterMap);
 		query = sortQuery(query, orderList);
-		return db.find(query, getStoredClass());
+		return mongoOperations.find(query, getStoredClass());
 	}
 
 	@Override
@@ -139,13 +137,13 @@ public abstract class MongoDao<K extends Serializable, T extends DomainObject> i
 		Query query = constructQueryForFilter(filterMap);
 		query = sortQuery(query, orderList);
 		query = limitQuery(query, start, size);
-		return db.find(query, getStoredClass());
+		return mongoOperations.find(query, getStoredClass());
 	}
 
 	@Override
 	public Iterable<T> findAll() {
 		Query query = new Query();
-		return db.find(query, getStoredClass());
+		return mongoOperations.find(query, getStoredClass());
 	}
 
 	@Override

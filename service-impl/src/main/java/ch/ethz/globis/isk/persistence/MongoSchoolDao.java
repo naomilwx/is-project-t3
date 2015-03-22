@@ -25,7 +25,7 @@ public class MongoSchoolDao extends MongoDao<String, School> implements SchoolDa
     }
 
 	@Override
-	public Class<School> getStoredClass() {
-		return School.class;
+	public Class getStoredClass() {
+		return MongoSchool.class;
 	}
 }

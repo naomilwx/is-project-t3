@@ -27,7 +27,7 @@ public class MongoMasterThesisDao extends MongoDao<String, MasterThesis> impleme
     }
 
 	@Override
-	public Class<MasterThesis> getStoredClass() {
-		return MasterThesis.class;
+	public Class getStoredClass() {
+		return MongoMasterThesis.class;
 	}
 }

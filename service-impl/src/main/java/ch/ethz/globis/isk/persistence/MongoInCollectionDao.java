@@ -25,7 +25,7 @@ public class MongoInCollectionDao extends MongoDao<String, InCollection> impleme
     @Override
     public List<InCollection> findByBookIdOrderByYear(String bookId) {
         Query query = findBySubdocumentIdOrderedByYear("book", bookId);    	
-        return db.find(query, getStoredClass());
+        return mongoOperations.find(query, getStoredClass());
     }
 
    
@@ -35,8 +35,8 @@ public class MongoInCollectionDao extends MongoDao<String, InCollection> impleme
     }
 
 	@Override
-	public Class<InCollection> getStoredClass() {
-		return InCollection.class;
+	public Class getStoredClass() {
+		return MongoInCollection.class;
 	}
 
 }

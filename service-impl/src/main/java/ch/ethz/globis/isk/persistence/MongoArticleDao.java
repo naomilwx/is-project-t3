@@ -14,8 +14,8 @@ import ch.ethz.globis.isk.util.Operator;
 
 @Repository
 public class MongoArticleDao extends MongoDao<String, Article> implements ArticleDao {
-	public Class<Article> getStoredClass() {
-        return Article.class;
+	public Class getStoredClass() {
+        return MongoArticle.class;
     }
 
     @Override
@@ -33,6 +33,6 @@ public class MongoArticleDao extends MongoDao<String, Article> implements Articl
     @Override
     public List<Article> findByJournalEditionOrderedByYear(String journalEditionId) {
     	Query query = findBySubdocumentIdOrderedByYear("journalEdition", journalEditionId);    	
-        return db.find(query, getStoredClass());
+        return mongoOperations.find(query, getStoredClass());
     }
 }
