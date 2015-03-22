@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -43,10 +42,6 @@ public abstract class MongoDao<K extends Serializable, T extends DomainObject> i
 
 	@Override
 	public T findOne(K id) {
-		// I am unsure about this implementation
-//		Query query = new Query();
-//		query.addCriteria(Criteria.where("_id").is(id));
-//		return mongoOperations.findOne(query, getStoredClass());
 		return mongoOperations.findById(id, getStoredClass());
 	}
 

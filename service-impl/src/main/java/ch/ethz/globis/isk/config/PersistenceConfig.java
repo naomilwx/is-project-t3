@@ -101,9 +101,9 @@ public class PersistenceConfig {
     
     @Bean
     MongoOperations mongoOperations(String databaseName, Boolean dropDatabase) throws Exception{
-//    	if(dropDatabase){
-//    		
-//    	}
+    	if(dropDatabase){
+    		mongo().getObject().dropDatabase(databaseName);
+    	}
     	MongoOperations mongo = new MongoTemplate(mongo().getObject(), databaseName);
     	
     	return mongo;
