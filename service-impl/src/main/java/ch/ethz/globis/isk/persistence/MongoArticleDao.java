@@ -1,6 +1,5 @@
 package ch.ethz.globis.isk.persistence;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +11,6 @@ import ch.ethz.globis.isk.domain.Article;
 import ch.ethz.globis.isk.domain.MongoArticle;
 import ch.ethz.globis.isk.util.Filter;
 import ch.ethz.globis.isk.util.Operator;
-import ch.ethz.globis.isk.util.Order;
-import ch.ethz.globis.isk.util.OrderFilter;
 
 @Repository
 public class MongoArticleDao extends MongoDao<String, Article> implements ArticleDao {

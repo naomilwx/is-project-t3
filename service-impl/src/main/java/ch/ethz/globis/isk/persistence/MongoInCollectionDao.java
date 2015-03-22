@@ -1,18 +1,16 @@
 package ch.ethz.globis.isk.persistence;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
-import ch.ethz.globis.isk.domain.MongoInCollection;
 import ch.ethz.globis.isk.domain.InCollection;
+import ch.ethz.globis.isk.domain.MongoInCollection;
 import ch.ethz.globis.isk.util.Filter;
 import ch.ethz.globis.isk.util.Operator;
-import ch.ethz.globis.isk.util.Order;
-import ch.ethz.globis.isk.util.OrderFilter;
 
 @Repository
 public class MongoInCollectionDao extends MongoDao<String, InCollection> implements InCollectionDao {
@@ -26,16 +24,8 @@ public class MongoInCollectionDao extends MongoDao<String, InCollection> impleme
 
     @Override
     public List<InCollection> findByBookIdOrderByYear(String bookId) {
-    	//TODO: this will not work, because book is stored as an object, not id.
-    	Map<String,Filter> filterMap = new HashMap<String,Filter>();
-    	filterMap.put("book", new Filter(Operator.EQUAL,bookId));
-    	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 
-    	orderFilter.add(new OrderFilter("year", Order.ASC));
-    	List<InCollection> list = new ArrayList<InCollection>();
-    	for (InCollection inCollection : findAllByFilter(filterMap,orderFilter)){
-    		list.add(inCollection);
-    	}
-        return list;
+        Query query = findBySubdocumentIdOrderedByYear("book", bookId);    	
+        return db.find(query, getStoredClass());
     }
 
    

@@ -1,18 +1,16 @@
 package ch.ethz.globis.isk.persistence;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Repository;
+
 import ch.ethz.globis.isk.domain.MongoPublication;
 import ch.ethz.globis.isk.domain.Publication;
 import ch.ethz.globis.isk.util.Filter;
 import ch.ethz.globis.isk.util.Operator;
-import ch.ethz.globis.isk.util.Order;
-import ch.ethz.globis.isk.util.OrderFilter;
-
-import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Repository
 public class MongoPublicationDao extends MongoDao<String, Publication> implements PublicationDao {
@@ -31,72 +29,32 @@ public class MongoPublicationDao extends MongoDao<String, Publication> implement
 
     @Override
     public List<Publication> findByAuthorIdOrderedByYear(String authorId) {
-    	//TODO: fix this
-    	Map<String,Filter> filterMap = new HashMap<String,Filter>();
-    	filterMap.put("author", new Filter(Operator.EQUAL,authorId));
-    	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 
-    	orderFilter.add(new OrderFilter("year", Order.ASC));
-    	List<Publication> list = new ArrayList<Publication>();
-    	for (Publication publication : findAllByFilter(filterMap)){
-    		list.add(publication);
-    	}
-        return list;
+        Query query = findBySubdocumentIdOrderedByYear("author", authorId);    	
+        return db.find(query, getStoredClass());
     }
 
     @Override
     public List<Publication> findByEditorIdOrderedByYear(String editorId) {
-    	//TODO: fix this
-    	Map<String,Filter> filterMap = new HashMap<String,Filter>();
-    	filterMap.put("editor", new Filter(Operator.EQUAL,editorId));
-    	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 
-    	orderFilter.add(new OrderFilter("year", Order.ASC));
-    	List<Publication> list = new ArrayList<Publication>();
-    	for (Publication publication : findAllByFilter(filterMap,orderFilter)){
-    		list.add(publication);
-    	}
-        return list;
+    	Query query = findBySubdocumentIdOrderedByYear("editor", editorId);    	
+        return db.find(query, getStoredClass());
     }
 
     @Override
     public List<Publication> findByPublisherOrderedByYear(String publisherId) {
-    	//TODO: fix this
-    	Map<String,Filter> filterMap = new HashMap<String,Filter>();
-    	filterMap.put("publisher", new Filter(Operator.EQUAL,publisherId));
-    	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 
-    	orderFilter.add(new OrderFilter("year", Order.ASC));
-    	List<Publication> list = new ArrayList<Publication>();
-    	for (Publication publication : findAllByFilter(filterMap,orderFilter)){
-    		list.add(publication);
-    	}
-        return list;
+    	Query query = findBySubdocumentIdOrderedByYear("publisher", publisherId);    	
+        return db.find(query, getStoredClass());
     }
 
     @Override
     public List<Publication> findBySchoolOrderedByYear(String schoolId) {
-    	//TODO: fix this
-    	Map<String,Filter> filterMap = new HashMap<String,Filter>();
-    	filterMap.put("school", new Filter(Operator.EQUAL,schoolId));
-    	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 
-    	orderFilter.add(new OrderFilter("year", Order.ASC));
-    	List<Publication> list = new ArrayList<Publication>();
-    	for (Publication publication : findAllByFilter(filterMap,orderFilter)){
-    		list.add(publication);
-    	}
-        return list;
+    	Query query = findBySubdocumentIdOrderedByYear("school", schoolId);    	
+        return db.find(query, getStoredClass());
     }
 
     @Override
     public List<Publication> findBySeriesOrderedByYear(String seriesId) {
-    	//TODO: fix this
-    	Map<String,Filter> filterMap = new HashMap<String,Filter>();
-    	filterMap.put("series", new Filter(Operator.EQUAL,seriesId));
-    	List<OrderFilter> orderFilter = new ArrayList<OrderFilter>(); 
-    	orderFilter.add(new OrderFilter("year", Order.ASC));
-    	List<Publication> list = new ArrayList<Publication>();
-    	for (Publication publication : findAllByFilter(filterMap,orderFilter)){
-    		list.add(publication);
-    	}
-        return list;
+    	Query query = findBySubdocumentIdOrderedByYear("series", seriesId);    	
+        return db.find(query, getStoredClass());
     }
 
 	@Override
