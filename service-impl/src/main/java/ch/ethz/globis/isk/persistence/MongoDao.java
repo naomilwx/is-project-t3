@@ -56,17 +56,20 @@ public abstract class MongoDao<K extends Serializable, T extends DomainObject> i
 	
 	private Query constructQueryForFilter(Map<String, Filter> filterMap){
 		Query query = new Query();
-		for(Map.Entry<String, Filter> filterItem : filterMap.entrySet()) {
-			String filterKey = filterItem.getKey();
-			Filter filter = filterItem.getValue();
-			Object filterVal =  filter.getValue();
-			if(Operator.EQUAL.equals(filter.getOperator())){
-				query.addCriteria(Criteria.where(filterKey).is(filterVal));
-			}else{
-				query.addCriteria(Criteria.where(filterKey).regex((String) filterVal));
+		if(filterMap != null){
+			for(Map.Entry<String, Filter> filterItem : filterMap.entrySet()) {
+				String filterKey = filterItem.getKey();
+				Filter filter = filterItem.getValue();
+				Object filterVal =  filter.getValue();
+				if(Operator.EQUAL.equals(filter.getOperator())){
+					query.addCriteria(Criteria.where(filterKey).is(filterVal));
+				}else{
+					query.addCriteria(Criteria.where(filterKey).regex((String) filterVal));
+				}
+				
 			}
-			
 		}
+		
 		return query;
 	}
 	
