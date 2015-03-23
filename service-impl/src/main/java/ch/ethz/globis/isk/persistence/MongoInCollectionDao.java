@@ -22,6 +22,7 @@ public class MongoInCollectionDao extends MongoDao<String, InCollection> impleme
         return findOneByFilter(filterMap);
     }
 
+    //TODO: fix this
     @Override
     public List<InCollection> findByBookIdOrderByYear(String bookId) {
         Query query = findBySubdocumentIdOrderedByYear("book", bookId);    	

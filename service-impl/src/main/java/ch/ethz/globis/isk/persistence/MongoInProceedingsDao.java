@@ -22,6 +22,7 @@ public class MongoInProceedingsDao extends MongoDao<String, InProceedings> imple
         return findOneByFilter(filterMap);
     }
 
+    //TODO: fix this
     @Override
     public List<InProceedings> findByProceedingsIdOrderByYear(String proceedingsId) {
     	Query query = findBySubdocumentIdOrderedByYear("proceedings", proceedingsId);    	
