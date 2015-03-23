@@ -30,7 +30,6 @@ public class MongoArticleDao extends MongoDao<String, Article> implements Articl
         return findOneByFilter(filterMap);
     }
 
-    //TODO: fix this
     @Override
     public List<Article> findByJournalEditionOrderedByYear(String journalEditionId) {
     	Query query = findBySubdocumentIdOrderedByYear("journalEdition", journalEditionId);    	

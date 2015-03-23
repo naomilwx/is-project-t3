@@ -17,7 +17,6 @@ public class MongoJournalEditionDao extends MongoDao<String, JournalEdition> imp
         return new MongoJournalEdition();
     }
 
-    //TODO: fix this
     @Override
     public List<JournalEdition> findByJournalIdOrdered(String journalId) {
     	Query query = findBySubdocumentIdOrderedByYear("journal", journalId);    	

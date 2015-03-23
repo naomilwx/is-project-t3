@@ -17,7 +17,6 @@ public class MongoConferenceEditionDao extends MongoDao<String, ConferenceEditio
         return new MongoConferenceEdition();
     }
 
-    //TODO: fix this
     @Override
     public List<ConferenceEdition> findByConferenceOrderedByYear(String conferenceId) {
     	Query query = findBySubdocumentIdOrderedByYear("conference", conferenceId);
