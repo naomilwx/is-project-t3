@@ -27,9 +27,11 @@ public class MongoPublicationDao extends MongoDao<String, Publication> implement
         return findOneByFilter(filterMap);
     }
 
+    //TODO: this does not actually work because there is no document of class MongoPublication,
+    //The documents we are interested in are subclasses of MongoPublication
     @Override
     public List<Publication> findByAuthorIdOrderedByYear(String authorId) {
-        Query query = findBySubdocumentIdOrderedByYear("author", authorId);    	
+        Query query = findBySubdocumentIdOrderedByYear("author", authorId);  
         return mongoOperations.find(query, getStoredClass());
     }
 
