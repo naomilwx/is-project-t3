@@ -8,7 +8,7 @@ import ch.ethz.globis.isk.domain.School;
 
 @Document
 public class MongoMasterThesis extends MongoPublication implements MasterThesis {
-	@DBRef
+	@DBRef(lazy = true)
     private School school;
 
     public MongoMasterThesis() { }

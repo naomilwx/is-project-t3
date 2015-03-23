@@ -14,11 +14,11 @@ public class MongoProceedings extends MongoPublication implements Proceedings {
     private String volume;
     private String isbn;
     
-    @DBRef
+    @DBRef(lazy = true)
     private Publisher publisher;
-    @DBRef
+    @DBRef(lazy = true)
     private Series series;
-    @DBRef
+    @DBRef(lazy = true)
     private ConferenceEdition conferenceEdition;
 
     @DBRef(lazy = true)

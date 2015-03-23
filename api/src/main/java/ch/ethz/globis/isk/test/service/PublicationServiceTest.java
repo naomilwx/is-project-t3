@@ -128,41 +128,41 @@ public class PublicationServiceTest {
         assertNotNull(person);
         assertEquals(PERSON_ID, person.getId());
         assertEquals(PERSON_NAME, person.getName());
-//        assertEquals(2, person.getAuthoredPublications().size()); //Problem with cyclic references
-//        assertEquals(1, person.getEditedPublications().size());
+        assertEquals(2, person.getAuthoredPublications().size()); //Problem with cyclic references
+        assertEquals(1, person.getEditedPublications().size());
         conference = conferenceService.findOne(CONFERENCE_ID);
         assertNotNull(conference);
         assertEquals(CONFERENCE_ID, conference.getId());
         assertEquals(CONFERENCE_NAME, conference.getName());
-//        assertEquals(1, conference.getEditions().size());
-//        conferenceEdition = conferenceEditionService.findOne(CONF_ED_ID);
-//        assertNotNull(conferenceEdition);
-//        assertEquals(conference, conferenceEdition.getConference());
-//        proceedings = proceedingsService.findOne(PROCEEDINGS_ID);
-//        assertNotNull(proceedings);
-//        assertEquals(PROCEEDINGS_ID, proceedings.getId());
-//        assertEquals(PROCEEDINGS_TITLE, proceedings.getTitle());
-//        assertEquals(conferenceEdition, proceedings.getConferenceEdition());
-//        assertEquals(proceedings, conferenceEdition.getProceedings());
-//        assertEquals(1, proceedings.getEditors().size());
-//        assertEquals(0, proceedings.getAuthors().size());
-//        assertEquals(2, proceedings.getPublications().size());
-//        inProceedings1 = inProceedingsService.findOne(INPROCEEDINGS_ID_1);
-//        assertNotNull(inProceedings1);
-//        assertEquals(INPROCEEDINGS_ID_1, inProceedings1.getId());
-//        assertEquals(INPROCEEDINGS_TITLE_1, inProceedings1.getTitle());
-//        assertEquals(1, inProceedings1.getAuthors().size());
-//        assertEquals(0, inProceedings1.getEditors().size());
-//        assertEquals(proceedings, inProceedings1.getProceedings());
-//        inProceedings1 = inProceedingsService.findOne(INPROCEEDINGS_ID_2);
-//        assertNotNull(inProceedings2);
-//        assertEquals(INPROCEEDINGS_ID_2, inProceedings2.getId());
-//        assertEquals(INPROCEEDINGS_TITLE_2, inProceedings2.getTitle());
-//        assertEquals(1, inProceedings2.getAuthors().size());
-//        assertEquals(0, inProceedings2.getEditors().size());
-//        assertEquals(proceedings, inProceedings2.getProceedings());
-//        assertTrue(proceedings.getPublications().contains(inProceedings1));
-//        assertTrue(proceedings.getPublications().contains(inProceedings2));
+        assertEquals(1, conference.getEditions().size());
+        conferenceEdition = conferenceEditionService.findOne(CONF_ED_ID);
+        assertNotNull(conferenceEdition);
+        assertEquals(conference.getId(), conferenceEdition.getConference().getId());
+        proceedings = proceedingsService.findOne(PROCEEDINGS_ID);
+        assertNotNull(proceedings);
+        assertEquals(PROCEEDINGS_ID, proceedings.getId());
+        assertEquals(PROCEEDINGS_TITLE, proceedings.getTitle());
+        assertEquals(conferenceEdition.getId(), proceedings.getConferenceEdition().getId());
+        assertEquals(proceedings.getId(), conferenceEdition.getProceedings().getId());
+        assertEquals(1, proceedings.getEditors().size());
+        assertEquals(0, proceedings.getAuthors().size());
+        assertEquals(2, proceedings.getPublications().size());
+        inProceedings1 = inProceedingsService.findOne(INPROCEEDINGS_ID_1);
+        assertNotNull(inProceedings1);
+        assertEquals(INPROCEEDINGS_ID_1, inProceedings1.getId());
+        assertEquals(INPROCEEDINGS_TITLE_1, inProceedings1.getTitle());
+        assertEquals(1, inProceedings1.getAuthors().size());
+        assertEquals(0, inProceedings1.getEditors().size());
+        assertEquals(proceedings, inProceedings1.getProceedings());
+        inProceedings1 = inProceedingsService.findOne(INPROCEEDINGS_ID_2);
+        assertNotNull(inProceedings2);
+        assertEquals(INPROCEEDINGS_ID_2, inProceedings2.getId());
+        assertEquals(INPROCEEDINGS_TITLE_2, inProceedings2.getTitle());
+        assertEquals(1, inProceedings2.getAuthors().size());
+        assertEquals(0, inProceedings2.getEditors().size());
+        assertEquals(proceedings.getId(), inProceedings2.getProceedings().getId());
+        assertTrue(proceedings.getPublications().contains(inProceedings1));
+        assertTrue(proceedings.getPublications().contains(inProceedings2));
         tm.commitTransaction();
     }
 
@@ -478,9 +478,9 @@ public class PublicationServiceTest {
         tm.beginTransaction();
         List<Publication> publications = publicationService.findByAuthorIdOrderedByYear(PERSON_ID);
         assertNotNull("Publications should not be null", publications);
-//        assertEquals("Invalid size", 2, publications.size());
-//        assertEquals("Order not correct", PHD_THESIS_ID, publications.get(0).getId());
-//        assertEquals("Order not correct", BOOK_ID, publications.get(1).getId());
+        assertEquals("Invalid size", 2, publications.size());
+        assertEquals("Order not correct", PHD_THESIS_ID, publications.get(0).getId());
+        assertEquals("Order not correct", BOOK_ID, publications.get(1).getId());
         tm.commitTransaction();
     }
 
@@ -519,9 +519,9 @@ public class PublicationServiceTest {
         tm.beginTransaction();
         List<Publication> publications = publicationService.findByEditorIdOrderedByYear(PERSON_ID);
         assertNotNull("Publications should not be null", publications);
-//        assertEquals("Invalid size", 2, publications.size());
-//        assertEquals("Order not correct", PHD_THESIS_ID, publications.get(0).getId());
-//        assertEquals("Order not correct", BOOK_ID, publications.get(1).getId());
+        assertEquals("Invalid size", 2, publications.size());
+        assertEquals("Order not correct", PHD_THESIS_ID, publications.get(0).getId());
+        assertEquals("Order not correct", BOOK_ID, publications.get(1).getId());
         tm.commitTransaction();
     }
 
@@ -570,9 +570,9 @@ public class PublicationServiceTest {
         tm.beginTransaction();
         List<Publication> results = publicationService.findBySeriesOrderedByYear(SERIES_ID);
         assertNotNull("Results should not be null", results);
-//        assertEquals("Invalid size", 2, results.size());
-//        assertEquals("Invalid year", BOOK_YEAR, results.get(0).getYear());
-//        assertEquals("Invalid year", PROCEEDINGS_YEAR, results.get(1).getYear());
+        assertEquals("Invalid size", 2, results.size());
+        assertEquals("Invalid year", BOOK_YEAR, results.get(0).getYear());
+        assertEquals("Invalid year", PROCEEDINGS_YEAR, results.get(1).getYear());
         tm.commitTransaction();
     }
 
@@ -621,9 +621,9 @@ public class PublicationServiceTest {
         tm.beginTransaction();
         List<Publication> results = publicationService.findBySchoolOrderedByYear(SCHOOL_ID);
         assertNotNull("Results should not be null", results);
-//        assertEquals("Invalid size", 2, results.size());
-//        assertEquals("Invalid year", MASTER_THESIS_YEAR, results.get(0).getYear());
-//        assertEquals("Invalid year", PHD_THESIS_YEAR, results.get(1).getYear());
+        assertEquals("Invalid size", 2, results.size());
+        assertEquals("Invalid year", MASTER_THESIS_YEAR, results.get(0).getYear());
+        assertEquals("Invalid year", PHD_THESIS_YEAR, results.get(1).getYear());
         tm.commitTransaction();
     }
 
@@ -673,9 +673,9 @@ public class PublicationServiceTest {
         tm.beginTransaction();
         List<Publication> results = publicationService.findByPublisherOrderedByYear(PUBLISHER_ID);
         assertNotNull("Results should not be null", results);
-//        assertEquals("Invalid size", 2, results.size());
-//        assertEquals("Invalid year", PHD_THESIS_YEAR, results.get(0).getYear());
-//        assertEquals("Invalid year", BOOK_YEAR, results.get(1).getYear());
+        assertEquals("Invalid size", 2, results.size());
+        assertEquals("Invalid year", PHD_THESIS_YEAR, results.get(0).getYear());
+        assertEquals("Invalid year", BOOK_YEAR, results.get(1).getYear());
         tm.commitTransaction();
     }
 
@@ -709,9 +709,9 @@ public class PublicationServiceTest {
         tm.beginTransaction();
         List<Article> results = articleService.findByJournalEditionOrderedByYear(JE_ID);
         assertNotNull("Results should not be null", results);
-//        assertEquals("Invalid size", 2, results.size());
-//        assertEquals("Invalid year", ARTICLE_YEAR_1, results.get(0).getYear());
-//        assertEquals("Invalid year", ARTICLE_YEAR_2, results.get(1).getYear());
+        assertEquals("Invalid size", 2, results.size());
+        assertEquals("Invalid year", ARTICLE_YEAR_1, results.get(0).getYear());
+        assertEquals("Invalid year", ARTICLE_YEAR_2, results.get(1).getYear());
         tm.commitTransaction();
     }
 
@@ -766,9 +766,9 @@ public class PublicationServiceTest {
         tm.beginTransaction();
         List<InCollection> results = inCollectionService.findByBookIdOrderByYear(BOOK_ID);
         assertNotNull("Results should not be null", results);
-//        assertEquals("Invalid size", 2, results.size());
-//        assertEquals("Invalid year", INCOLLECTION_YEAR_1, results.get(0).getYear());
-//        assertEquals("Invalid year", INCOLLECTION_YEAR_2, results.get(1).getYear());
+        assertEquals("Invalid size", 2, results.size());
+        assertEquals("Invalid year", INCOLLECTION_YEAR_1, results.get(0).getYear());
+        assertEquals("Invalid year", INCOLLECTION_YEAR_2, results.get(1).getYear());
         tm.commitTransaction();
     }
 
@@ -838,9 +838,9 @@ public class PublicationServiceTest {
         tm.beginTransaction();
         List<InProceedings> results = inProceedingsService.findByProceedingsIdOrderByYear(PROCEEDINGS_ID);
         assertNotNull("Results should not be null", results);
-//        assertEquals("Invalid size", 2, results.size());
-//        assertEquals("Invalid year", INPROCEEDINGS_YEAR_2, results.get(0).getYear());
-//        assertEquals("Invalid year", INPROCEEDINGS_YEAR_1, results.get(1).getYear());
+        assertEquals("Invalid size", 2, results.size());
+        assertEquals("Invalid year", INPROCEEDINGS_YEAR_2, results.get(0).getYear());
+        assertEquals("Invalid year", INPROCEEDINGS_YEAR_1, results.get(1).getYear());
         tm.commitTransaction();
     }
 
@@ -872,10 +872,10 @@ public class PublicationServiceTest {
         tm.beginTransaction();
         List<JournalEdition> results = journalEditionService.findByJournalOrdered(JOURNAL_ID);
         assertNotNull("Results should not be null", results);
-//        assertEquals("Invalid size", 3, results.size());
-//        assertEquals("Invalid year", JE_YEAR_2, results.get(0).getYear());
-//        assertEquals("Invalid year", JE_YEAR_3, results.get(1).getYear());
-//        assertEquals("Invalid year", JE_YEAR_1, results.get(2).getYear());
+        assertEquals("Invalid size", 3, results.size());
+        assertEquals("Invalid year", JE_YEAR_2, results.get(0).getYear());
+        assertEquals("Invalid year", JE_YEAR_3, results.get(1).getYear());
+        assertEquals("Invalid year", JE_YEAR_1, results.get(2).getYear());
         tm.commitTransaction();
     }
 
@@ -901,10 +901,10 @@ public class PublicationServiceTest {
         tm.beginTransaction();
         List<ConferenceEdition> results = conferenceEditionService.findByConferenceOrderedByYear(CONF_ID);
         assertNotNull("Results should not be null", results);
-//        assertEquals("Invalid size", 3, results.size());
-//        assertEquals("Invalid year", CONF_ED_YEAR_3, results.get(0).getYear());
-//        assertEquals("Invalid year", CONF_ED_YEAR_1, results.get(1).getYear());
-//        assertEquals("Invalid year", CONF_ED_YEAR_2, results.get(2).getYear());
+        assertEquals("Invalid size", 3, results.size());
+        assertEquals("Invalid year", CONF_ED_YEAR_3, results.get(0).getYear());
+        assertEquals("Invalid year", CONF_ED_YEAR_1, results.get(1).getYear());
+        assertEquals("Invalid year", CONF_ED_YEAR_2, results.get(2).getYear());
         tm.commitTransaction();
     }
 

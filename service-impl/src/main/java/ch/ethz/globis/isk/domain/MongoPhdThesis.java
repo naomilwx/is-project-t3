@@ -15,9 +15,9 @@ public class MongoPhdThesis extends MongoPublication implements PhdThesis {
     private Integer number;
     private String isbn;
 
-    @DBRef
+    @DBRef(lazy = true)
     private Publisher publisher;
-    @DBRef
+    @DBRef(lazy = true)
     private School school;
 
     public MongoPhdThesis() { }

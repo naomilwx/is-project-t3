@@ -19,7 +19,7 @@ public class MongoJournalEdition implements JournalEdition {
     private String volume;
     private Integer year;
     
-    @DBRef
+    @DBRef(lazy = true)
     private Journal journal;
     
     @DBRef(lazy = true)

@@ -21,7 +21,7 @@ public class MongoBook extends MongoPublication implements Book {
     private String isbn;
     private Series series;
     
-    @DBRef
+    @DBRef(lazy = true)
     private Publisher publisher;
     
     @DBRef(lazy = true)

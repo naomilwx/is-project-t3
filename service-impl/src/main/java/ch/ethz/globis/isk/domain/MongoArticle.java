@@ -10,7 +10,7 @@ public class MongoArticle extends MongoPublication implements Article {
     private String cdrom;
     private String pages;
     
-    @DBRef
+    @DBRef(lazy = true)
     private JournalEdition journalEdition;
 
     public MongoArticle() {};

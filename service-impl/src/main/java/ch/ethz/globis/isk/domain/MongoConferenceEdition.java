@@ -14,9 +14,9 @@ public class MongoConferenceEdition implements ConferenceEdition {
     private String id;
     private Integer year;
     
-    @DBRef
+    @DBRef(lazy = true)
     private Conference conference;
-    @DBRef
+    @DBRef(lazy = true)
     private Proceedings proceedings;
 
 

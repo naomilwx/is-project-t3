@@ -11,7 +11,7 @@ public class MongoInCollection extends MongoPublication implements InCollection 
     private String note;
     private String pages;
     
-    @DBRef
+    @DBRef(lazy = true)
     private Book parentPublication;
 
     public MongoInCollection() { }

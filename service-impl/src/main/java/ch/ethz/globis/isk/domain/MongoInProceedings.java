@@ -12,7 +12,7 @@ public class MongoInProceedings extends MongoPublication implements InProceeding
     private String note;
     private String pages;
     
-    @DBRef
+    @DBRef(lazy = true)
     private Proceedings proceedings;
 
     public MongoInProceedings() {}
