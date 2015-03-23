@@ -95,6 +95,7 @@ public class MongoProceedings extends MongoPublication implements Proceedings {
     }
 
     public void setPublications(Set<InProceedings> publications) {
-        this.publications = new HashSet<>(publications);
+//        this.publications = new HashSet<>(publications);
+    	this.publications = publications;
     }
 }

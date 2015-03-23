@@ -47,8 +47,9 @@ public class MongoJournal implements Journal {
     }
 
     public void setEditions(Set<JournalEdition> editions) {
-        this.editions.clear();
-        this.editions.addAll(editions);
+//        this.editions.clear();
+//        this.editions.addAll(editions);
+    	this.editions = editions;
     }
 
 }

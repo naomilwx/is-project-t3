@@ -49,8 +49,9 @@ public class MongoPublication implements Publication {
 
     @Override
     public void setAuthors(Set<Person> authors) {
-        this.authors.clear();
-        this.authors.addAll(authors);
+//        this.authors.clear();
+//        this.authors.addAll(authors);
+    	this.authors = authors;
     }
 
     public Set<Person> getEditors() {
@@ -59,8 +60,9 @@ public class MongoPublication implements Publication {
 
     @Override
     public void setEditors(Set<Person> editors) {
-        this.editors.clear();
-        this.editors.addAll(editors);
+//        this.editors.clear();
+//        this.editors.addAll(editors);
+    	this.editors = editors;
     }
 
     public Integer getYear() {
