@@ -154,7 +154,7 @@ public abstract class MongoDao<K extends Serializable, T extends DomainObject> i
 	
 	protected Query findBySubdocumentIdOrderedByYear(String subdocName, String subdocId){
 		Query query = new Query();
-		query.addCriteria(Criteria.where(subdocName+".id").is(subdocId));
+		query.addCriteria(Criteria.where(subdocName+"._id").is(subdocId));
 		OrderFilter filter = new OrderFilter("year", Order.ASC);
 		query.with(createSort(filter));
 		return query;

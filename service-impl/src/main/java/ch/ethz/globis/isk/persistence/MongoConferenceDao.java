@@ -30,7 +30,7 @@ public class MongoConferenceDao extends MongoDao<String, Conference> implements 
     }
 
 	@Override
-	public Class<Conference> getStoredClass() {
-		return Conference.class;
+	public Class getStoredClass() {
+		return MongoConference.class;
 	}
 }
