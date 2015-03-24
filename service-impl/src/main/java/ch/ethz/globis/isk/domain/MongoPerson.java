@@ -47,7 +47,6 @@ public class MongoPerson implements Person {
     }
 
     public void setAuthoredPublications(Set<Publication> publications) {
-//        this.authoredPublications = new HashSet<>(publications);
     	this.authoredPublications = publications;
     }
 
@@ -56,7 +55,6 @@ public class MongoPerson implements Person {
     }
 
     public void setEditedPublications(Set<Publication> publications) {
-//        this.editedPublications = new HashSet<>(publications);
     	this.editedPublications = publications;
     }
 

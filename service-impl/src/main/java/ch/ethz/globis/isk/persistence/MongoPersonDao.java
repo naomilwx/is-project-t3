@@ -1,14 +1,14 @@
 package ch.ethz.globis.isk.persistence;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.stereotype.Repository;
+
 import ch.ethz.globis.isk.domain.MongoPerson;
 import ch.ethz.globis.isk.domain.Person;
 import ch.ethz.globis.isk.util.Filter;
 import ch.ethz.globis.isk.util.Operator;
-
-import org.springframework.stereotype.Repository;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Repository
 public class MongoPersonDao extends MongoDao<String, Person> implements PersonDao {

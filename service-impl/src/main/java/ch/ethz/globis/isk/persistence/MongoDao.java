@@ -42,9 +42,6 @@ public abstract class MongoDao<K extends Serializable, T extends DomainObject> i
 
 	@Override
 	public T findOne(K id) {
-//		Query query = new Query();
-//		query.addCriteria(Criteria.where("_id").is(id));
-//		return mongoOperations.findOne(query, getStoredClass());
 		return mongoOperations.findById(id, getStoredClass());
 	}
 

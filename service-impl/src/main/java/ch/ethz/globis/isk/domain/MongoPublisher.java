@@ -45,8 +45,6 @@ public class MongoPublisher implements Publisher {
 
     @Override
     public void setPublications(Set<Publication> publications) {
-//        this.publications.clear();
-//        this.publications.addAll(publications);
     	this.publications = publications;
     }
 

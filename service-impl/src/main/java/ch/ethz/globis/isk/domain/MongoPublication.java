@@ -49,8 +49,6 @@ public class MongoPublication implements Publication {
 
     @Override
     public void setAuthors(Set<Person> authors) {
-//        this.authors.clear();
-//        this.authors.addAll(authors);
     	this.authors = authors;
     }
 
@@ -60,8 +58,6 @@ public class MongoPublication implements Publication {
 
     @Override
     public void setEditors(Set<Person> editors) {
-//        this.editors.clear();
-//        this.editors.addAll(editors);
     	this.editors = editors;
     }
 

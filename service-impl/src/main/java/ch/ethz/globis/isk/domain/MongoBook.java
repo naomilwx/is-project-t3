@@ -68,8 +68,6 @@ public class MongoBook extends MongoPublication implements Book {
 
     @Override
     public void setPublications(Set<InCollection> publications) {
-//        this.publications.clear();
-//        this.publications.addAll(publications);
     	this.publications = publications;
     }
 

@@ -37,8 +37,6 @@ public class MongoConference implements Conference {
     }
 
     public void setEditions(Set<ConferenceEdition> editions) {
-//        this.editions.clear();
-//        this.editions.addAll(editions);
     	this.editions = editions;
     }
 

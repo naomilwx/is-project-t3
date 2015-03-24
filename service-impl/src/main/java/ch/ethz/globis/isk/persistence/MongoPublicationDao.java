@@ -33,8 +33,6 @@ public class MongoPublicationDao extends MongoDao<String, Publication> implement
 
 			@Override
 			public int compare(Publication o1, Publication o2) {
-				
-				// TODO Auto-generated method stub
 				return o1.getYear().compareTo(o2.getYear());
 			}};
 			
@@ -53,15 +51,11 @@ public class MongoPublicationDao extends MongoDao<String, Publication> implement
     	MongoPerson author = mongoOperations.findById(authorId, MongoPerson.class);
     	ArrayList<Publication> pubs = new ArrayList<>(author.getAuthoredPublications());
     	Collections.sort(pubs, createYearComparator());
-//        Query query = findBySubdocumentIdOrderedByYear("author", authorId);  
-//        return mongoOperations.find(query, getStoredClass());
     	return pubs;
     }
 
     @Override
     public List<Publication> findByEditorIdOrderedByYear(String editorId) {
-//    	Query query = findBySubdocumentIdOrderedByYear("editor", editorId);    	
-//        return mongoOperations.find(query, getStoredClass());
     	MongoPerson editor = mongoOperations.findById(editorId, MongoPerson.class);
     	ArrayList<Publication> pubs = new ArrayList<>(editor.getEditedPublications());
     	Collections.sort(pubs, createYearComparator());
@@ -70,8 +64,6 @@ public class MongoPublicationDao extends MongoDao<String, Publication> implement
 
     @Override
     public List<Publication> findByPublisherOrderedByYear(String publisherId) {
-//    	Query query = findBySubdocumentIdOrderedByYear("publisher", publisherId);    	
-//        return mongoOperations.find(query, getStoredClass());
         MongoPublisher publisher = mongoOperations.findById(publisherId, MongoPublisher.class);
         ArrayList<Publication> pubs = new ArrayList<>(publisher.getPublications());
     	Collections.sort(pubs, createYearComparator());
@@ -80,8 +72,6 @@ public class MongoPublicationDao extends MongoDao<String, Publication> implement
 
     @Override
     public List<Publication> findBySchoolOrderedByYear(String schoolId) {
-//    	Query query = findBySubdocumentIdOrderedByYear("school", schoolId);    	
-//        return mongoOperations.find(query, getStoredClass());
     	MongoSchool school = mongoOperations.findById(schoolId, MongoSchool.class);
     	ArrayList<Publication> pubs = new ArrayList<>(school.getPublications());
      	Collections.sort(pubs, createYearComparator());
@@ -90,8 +80,6 @@ public class MongoPublicationDao extends MongoDao<String, Publication> implement
 
     @Override
     public List<Publication> findBySeriesOrderedByYear(String seriesId) {
-//    	Query query = findBySubdocumentIdOrderedByYear("series", seriesId);    	
-//        return mongoOperations.find(query, getStoredClass());
     	MongoSeries series = mongoOperations.findById(seriesId, MongoSeries.class);
     	ArrayList<Publication> pubs = new ArrayList<>(series.getPublications());
      	Collections.sort(pubs, createYearComparator());
