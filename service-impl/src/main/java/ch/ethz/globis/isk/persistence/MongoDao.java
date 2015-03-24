@@ -74,6 +74,9 @@ public abstract class MongoDao<K extends Serializable, T extends DomainObject> i
 	}
 	
 	private Query sortQuery(Query query, List<OrderFilter> orderList){
+		if(orderList == null){
+			return query;
+		}
 		Sort sort = null;
 		for(OrderFilter orderFilter: orderList){
 			if(sort != null){
