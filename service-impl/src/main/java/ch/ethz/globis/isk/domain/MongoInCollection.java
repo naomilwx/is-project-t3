@@ -5,7 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import ch.ethz.globis.isk.domain.Book;
 import ch.ethz.globis.isk.domain.InCollection;
-@Document
+
+@Document(collection="publication")
 public class MongoInCollection extends MongoPublication implements InCollection {
 
     private String note;

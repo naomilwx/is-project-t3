@@ -8,7 +8,7 @@ import ch.ethz.globis.isk.domain.Conference;
 import ch.ethz.globis.isk.domain.ConferenceEdition;
 import ch.ethz.globis.isk.domain.Proceedings;
 
-@Document
+@Document(collection="conferenceEdition")
 public class MongoConferenceEdition implements ConferenceEdition {
 	@Id
     private String id;

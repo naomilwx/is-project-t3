@@ -9,7 +9,7 @@ import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-@Document
+@Document(collection="journal")
 public class MongoJournal implements Journal {
 	@Id
     private String id;

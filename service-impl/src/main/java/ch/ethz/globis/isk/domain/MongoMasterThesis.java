@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import ch.ethz.globis.isk.domain.MasterThesis;
 import ch.ethz.globis.isk.domain.School;
 
-@Document
+@Document(collection="publication")
 public class MongoMasterThesis extends MongoPublication implements MasterThesis {
 	@DBRef(lazy = true)
     private School school;

@@ -7,7 +7,7 @@ import ch.ethz.globis.isk.domain.PhdThesis;
 import ch.ethz.globis.isk.domain.Publisher;
 import ch.ethz.globis.isk.domain.School;
 
-@Document
+@Document(collection="publication")
 public class MongoPhdThesis extends MongoPublication implements PhdThesis {
 
     private Integer month;

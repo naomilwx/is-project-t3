@@ -4,7 +4,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Document
+@Document(collection="publication")
 public class MongoArticle extends MongoPublication implements Article {
 
     private String cdrom;
